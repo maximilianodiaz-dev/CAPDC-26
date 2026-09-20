@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Expertia — Mockup semi funcional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#f4f5fb;--bg2:#ececf7;
+ --ink:#0f1526;--ink2:#3a4257;--muted:#68708a;--muted2:#98a0b8;
+ --brand:#4f46e5;--brand2:#4338ca;--brand3:#7c3aed;
+ --brandl:#eef0ff;--brandl2:#e2e1ff;
+ --accent:#f59e0b;--accentl:#fef3c7;
+ --danger:#e11d48;--dangerl:#ffe9ee;
+ --ok:#059669;--okl:#e5f9f1;
+ --warn:#d97706;--warnl:#fff4e0;
+ --card:#fff;--line:#e6e6f2;--line2:#eeeef8;
+ --r:16px;--rs:10px;--rl:22px;
+ --sh:0 1px 2px rgba(20,20,50,.04),0 10px 28px -10px rgba(30,27,80,.14);
+ --shsm:0 1px 2px rgba(20,20,50,.05);
+ --shlg:0 24px 60px -16px rgba(24,20,70,.32);
+ --grad:linear-gradient(135deg,var(--brand),var(--brand3));
+ --fd:'Plus Jakarta Sans',Inter,system-ui,sans-serif;
+ --fb:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--fb);background:
+  radial-gradient(1100px 480px at 85% -12%, #e7e6ff 0%, rgba(231,230,255,0) 60%),
+  radial-gradient(900px 420px at -10% 0%, #eef3ff 0%, rgba(238,243,255,0) 55%),
+  var(--bg);
+ color:var(--ink);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0 0 .4em;line-height:1.18;font-family:var(--fd);letter-spacing:-0.015em;color:var(--ink)}
+h1{font-size:28px;font-weight:800}h2{font-size:21px;font-weight:700}h3{font-size:16px;font-weight:700}
+a{color:var(--brand2);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font:inherit;cursor:pointer}
+input,select,textarea{font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:var(--rs);background:#fff;width:100%;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brandl)}
+input[type=checkbox],input[type=radio]{width:auto;accent-color:var(--brand)}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin:10px 0 5px;letter-spacing:.01em}
+.btn{border:1.5px solid var(--line);background:#fff;padding:9px 16px;border-radius:var(--rs);color:var(--ink2);font-weight:600;font-size:14px;transition:.15s;box-shadow:var(--shsm)}
+.btn:hover{background:#fafaff;border-color:#d7d7ec;transform:translateY(-1px)}
+.btn.p{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 1px 1px rgba(79,70,229,.15),0 10px 20px -8px rgba(79,70,229,.55)}
+.btn.p:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.btn.d{background:#fff;border-color:#f7b9c6;color:var(--danger)}.btn.d:hover{background:var(--dangerl);border-color:#f2a4b6}
+.btn.s{padding:5px 12px;font-size:13px;border-radius:8px}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none!important}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.muted{color:var(--muted)}.small{font-size:13px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 11px;border-radius:99px;font-size:11.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;background:#eef0f9;color:var(--ink2);white-space:nowrap}
+.badge.ok{background:var(--okl);color:var(--ok)}.badge.bad{background:var(--dangerl);color:var(--danger)}.badge.warn{background:var(--warnl);color:var(--warn)}.badge.br{background:var(--brandl);color:var(--brand2)}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line2);vertical-align:middle}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;background:#fafafe}
+th:first-child{border-top-left-radius:10px}th:last-child{border-top-right-radius:10px}
+tbody tr:hover td{background:#fbfbff}
+tr.dim td{opacity:.5}
+.tw{overflow-x:auto;border-radius:var(--r)}
+.tw table{border-radius:var(--r);overflow:hidden}
+.demo{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,#0b0f2e,#171246);color:#c9cdfb;padding:9px 18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.08)}
+.demo b{color:#fff;font-family:var(--fd);letter-spacing:-.01em}
+.demo select{width:auto;padding:5px 10px;background:#1c1a4d;color:#e4e6ff;border:1px solid #34317a;border-radius:8px}
+.demo .btn{background:#1c1a4d;color:#e4e6ff;border:1px solid #34317a;padding:5px 12px;font-size:12px;box-shadow:none}
+.demo .btn:hover{background:#26235f;transform:none}
+.demo a{color:#a9b0ff}
+.demo label{display:inline-flex;align-items:center;gap:5px;margin:0;color:#c9cdfb;font-weight:500}
+.chip{display:inline-block;padding:3px 11px;border-radius:99px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#472e00;font-weight:700;font-size:12px}
+.wrap{max-width:1020px;margin:0 auto;padding:0 18px 40px}
+.landing{background:var(--grad);padding:56px 18px 110px;margin-bottom:-80px;position:relative;overflow:hidden}
+.landing::before{content:'';position:absolute;inset:0;background:radial-gradient(60% 90% at 15% 0%,rgba(255,255,255,.22),transparent 60%),radial-gradient(50% 70% at 100% 100%,rgba(255,255,255,.14),transparent 55%)}
+.landing-in{max-width:1020px;margin:0 auto;position:relative;color:#fff}
+.landing-in .k{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:5px 13px;border-radius:99px;font-size:12.5px;font-weight:600;margin-bottom:16px;backdrop-filter:blur(4px)}
+.landing-in h1{color:#fff;font-size:34px;max-width:640px}
+.landing-in p{color:rgba(255,255,255,.88);max-width:560px;font-size:15.5px}
+.role{cursor:pointer;transition:.18s;border:1px solid var(--line);position:relative;overflow:hidden}
+.role::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:.2s}
+.role:hover{border-color:transparent;transform:translateY(-3px);box-shadow:var(--shlg)}
+.role:hover::after{transform:scaleX(1)}
+.role .ic{font-size:26px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--brandl);border-radius:12px;margin-bottom:10px}
+.err{background:var(--dangerl);color:#9f1239;padding:10px 14px;border-radius:var(--rs);margin:10px 0;font-size:14px;border:1px solid #fbc9d5;font-weight:500}
+.okbox{background:var(--okl);color:#065f46;padding:10px 14px;border-radius:var(--rs);margin:10px 0;font-size:14px;border:1px solid #b7ecd8;font-weight:500}
+.shell{display:flex;min-height:calc(100vh - 41px)}
+.side{width:238px;background:#fff;border-right:1px solid var(--line);padding:20px 14px;flex-shrink:0}
+.side.sa{background:linear-gradient(190deg,#0b0f2e 0%,#161341 100%);color:#c7ccf7;border-right:none}
+.brand{font-family:var(--fd);font-weight:800;font-size:19px;color:var(--ink);padding:2px 10px 18px;display:flex;align-items:center;gap:9px;letter-spacing:-.01em}
+.brand .mark{width:28px;height:28px;border-radius:8px;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;box-shadow:0 4px 10px -3px rgba(79,70,229,.6);flex-shrink:0}
+.sa .brand{color:#fff}
+.nav a{display:block;padding:9px 14px;border-radius:0 10px 10px 0;color:var(--ink2);text-decoration:none;margin:0 0 2px -14px;padding-left:24px;font-size:14px;font-weight:500;border-left:3px solid transparent;transition:.15s}
+.nav a:hover{background:#f5f5fc}.sa .nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav a.on{background:var(--brandl);color:var(--brand2);font-weight:700;border-left-color:var(--brand)}
+.sa .nav a.on{background:rgba(129,140,248,.16);color:#c7d2fe;border-left-color:#818cf8}
+.main{flex:1;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 26px;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);gap:10px;flex-wrap:wrap;position:sticky;top:41px;z-index:10}
+.content{padding:26px;max-width:1120px}
+.kpi{position:relative}
+.kpi .n{font-family:var(--fd);font-size:32px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
+.bars{display:flex;gap:10px;align-items:flex-end;height:150px;padding-top:10px}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:12px;color:var(--muted)}
+.bar i{display:block;width:100%;background:var(--grad);border-radius:8px 8px 3px 3px;min-height:3px;box-shadow:0 4px 10px -4px rgba(79,70,229,.5)}
+.bar span{margin-top:6px;font-weight:600}
+.pub{max-width:760px;margin:0 auto;padding:22px 16px 110px}
+.pubh{background:
+  radial-gradient(120% 160% at 100% 0%,rgba(255,255,255,.18),transparent 55%),
+  radial-gradient(90% 140% at 0% 100%,rgba(255,255,255,.10),transparent 50%),
+  var(--grad);
+ color:#fff;border-radius:var(--rl);padding:30px 28px;margin-bottom:20px;box-shadow:var(--shlg);position:relative;overflow:hidden}
+.pubh h1{color:#fff;font-size:26px}.pubh p{margin:5px 0;opacity:.92;font-size:14.5px}
+.pubh .av{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);display:inline-flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;font-size:17px;margin-bottom:12px;backdrop-filter:blur(4px)}
+.steps{display:flex;gap:8px;margin-bottom:18px}
+.steps div{flex:1;text-align:center;font-size:12px;font-weight:600;padding:9px 4px;border-radius:99px;background:#ececf8;color:var(--muted)}
+.steps div.on{background:var(--grad);color:#fff;box-shadow:0 6px 16px -6px rgba(79,70,229,.6)}.steps div.done{background:var(--brandl);color:var(--brand2)}
+.svc{cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;transition:.18s}
+.svc:hover{border-color:transparent;box-shadow:var(--shlg);transform:translateY(-2px)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.c{padding:8px 15px;border-radius:99px;border:1.5px solid var(--line);background:#fff;font-size:14px;font-weight:600;color:var(--ink2);transition:.15s}
+.c:hover{border-color:var(--brand);color:var(--brand2)}.c.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 14px -6px rgba(79,70,229,.6)}.c[disabled]{opacity:.4;cursor:not-allowed}
+.opt{display:flex;gap:10px;align-items:center;padding:12px;border:1.5px solid var(--line);border-radius:var(--rs);margin:6px 0;cursor:pointer;background:#fff;transition:.15s}
+.opt:hover{border-color:#c7c9f7}
+.opt.on{border-color:var(--brand);background:var(--brandl)}
+.mail{border:1.5px dashed #c7c9e6;border-radius:var(--rs);padding:14px;background:#fafaff;font-size:13px}
+#modal{position:fixed;inset:0;background:rgba(15,15,35,.55);backdrop-filter:blur(2px);display:none;align-items:flex-start;justify-content:center;z-index:100;padding:30px 12px;overflow:auto}
+#modal.on{display:flex}
+.mbox{background:#fff;border-radius:var(--r);padding:24px;width:100%;max-width:560px;box-shadow:var(--shlg)}
+#toasts{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{background:#14122f;color:#fff;padding:11px 18px;border-radius:12px;font-size:14px;box-shadow:var(--shlg);max-width:90vw;font-weight:500}
+.toast.bad{background:linear-gradient(135deg,#e11d48,#be123c)}.toast.ok{background:linear-gradient(135deg,#059669,#047857)}
+#chat .fab{position:fixed;right:20px;bottom:20px;width:60px;height:60px;border-radius:50%;background:var(--grad);color:#fff;border:0;font-size:26px;box-shadow:0 14px 30px -8px rgba(79,70,229,.6);z-index:60}
+#chat .fab::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(124,58,237,.35);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.82);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+#chat .panel{position:fixed;right:20px;bottom:92px;width:370px;max-width:calc(100vw - 24px);height:530px;max-height:calc(100vh - 112px);background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shlg);display:none;flex-direction:column;z-index:60;overflow:hidden}
+#chat .panel.on{display:flex}
+.ch{background:var(--grad);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.ch b{font-family:var(--fd)}
+.ch small{display:block;opacity:.9;font-weight:500}
+.cm{flex:1;overflow:auto;padding:14px;background:#fafaff;display:flex;flex-direction:column;gap:9px}
+.m{max-width:85%;padding:9px 13px;border-radius:16px;font-size:14px;white-space:pre-wrap;line-height:1.42}
+.m.bot{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px;box-shadow:var(--shsm)}
+.m.me{background:var(--grad);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.cc{padding:8px 12px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--line);background:#fff;max-height:112px;overflow:auto}
+.cc .c{font-size:13px;padding:6px 12px}
+.ci{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff}
+.dots span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--muted2);margin:0 2px;animation:b 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{opacity:.3}40%{opacity:1}}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#d7d8ef;border-radius:99px;border:2px solid #fafaff}
+::-webkit-scrollbar-track{background:transparent}
+@media(max-width:760px){.shell{flex-direction:column}.side{width:100%;display:flex;flex-wrap:wrap;gap:4px;align-items:center}.nav{display:flex;flex-wrap:wrap;gap:2px}.content{padding:14px}.top{position:static}.landing{padding:40px 18px 90px}.landing-in h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div id="demobar"></div>
+<div id="app"></div>
+<div id="modal"></div>
+<div id="toasts"></div>
+<div id="chat"></div>
+
+<script>
+/* ================= utilidades ================= */
+const $=(s,r=document)=>r.querySelector(s);
+const DAYS=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const DAYS_L=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const pad=n=>String(n).padStart(2,'0');
+const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const pd=s=>new Date(s+'T00:00:00');
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const toMin=h=>{const [a,b]=h.split(':');return (+a)*60+(+b)};
+const fromMin=m=>`${pad(Math.floor(m/60))}:${pad(m%60)}`;
+const money=n=>'$'+Number(n).toLocaleString('es-CL');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const fmtDay=f=>{const d=pd(f);return `${DAYS[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`};
+const fmtDayL=f=>{const d=pd(f);const t=ymd(new Date());return f===t?'hoy':f===ymd(addDays(new Date(),1))?'mañana':`${DAYS_L[d.getDay()].toLowerCase()} ${d.getDate()}/${d.getMonth()+1}`};
+const stars=r=>r==null?'<span class="muted small">Sin calificación</span>':`<b style="color:#b45309">★ ${Number(r).toFixed(1)}</b>`;
+const todayS=()=>ymd(new Date());
+const KEY='expertia-mock-v1';
+
+/* ================= datos ================= */
+let DB,session=null,CT=null;
+const USERS=[
+ {email:'super@expertia.cl',rol:'SUPER',nombre:'Admin Plataforma'},
+ {email:'maria@salonmaria.cl',rol:'DUENO',nombre:'María González',tenantId:1},
+ {email:'camila@salonmaria.cl',rol:'STAFF',nombre:'Camila Rojas',tenantId:1,resId:2},
+ {email:'daniela@salonmaria.cl',rol:'STAFF',nombre:'Daniela Soto',tenantId:1,resId:3},
+ {email:'carla@clinicavidasana.cl',rol:'DUENO',nombre:'Carla Jiménez',tenantId:2},
+ {email:'bernarda@clinicavidasana.cl',rol:'STAFF',nombre:'Dra. Bernarda Lagos',tenantId:2,resId:2},
+ {email:'fernanda@studioflow.cl',rol:'DUENO',nombre:'Fernanda Ibáñez',tenantId:3},
+ {email:'ignacio@studioflow.cl',rol:'STAFF',nombre:'Ignacio Bravo',tenantId:3,resId:3}
+];
+const ROLNAME={SUPER:'Super Admin',DUENO:'Dueño de Negocio',STAFF:'Staff / Profesional',CLIENTE:'Cliente Final'};
+const ROLENUM={SUPER:'SUPER_ADMIN',DUENO:'DUENO_NEGOCIO',STAFF:'STAFF',CLIENTE:'(sin cuenta)'};
+
+function makeTenant(id,nombre,rubro,estado,alta,plan,slug,negocio,services,resources,faq,staff){
+ return {id,nombre,rubro,estado,alta,plan,slug,negocio,services,resources,blocks:[],staff,invites:[],faq,bookings:[],mails:[]};
+}
+function ownerEmail(t){const u=USERS.find(x=>x.rol==='DUENO'&&x.tenantId===t.id);return u?u.email:('contacto@'+t.slug+'.cl')}
+function findTenant(slug){return DB.tenants.find(t=>t.slug===slug)}
+
+function seed(){
+ const t=new Date();
+ DB={seedDate:ymd(t),seq:100,llmDown:false,tenants:[]};
+
+ /* --- Salón María (salón de belleza) --- */
+ const t1=makeTenant(1,'Salón María','Salón de belleza','activo','2026-08-14','Pro','salon-maria',
+  {nombre:'Salón María',direccion:'Av. Providencia 1234, Santiago',horario:'Lun a Sáb 09:00–19:00'},
+  [{id:1,nombre:'Corte de cabello',duracion:45,precio:15000,grupal:false,cupo:1,activo:true,recursos:[1,2]},
+   {id:2,nombre:'Coloración',duracion:90,precio:45000,grupal:false,cupo:1,activo:true,recursos:[1,3]},
+   {id:3,nombre:'Manicure',duracion:60,precio:18000,grupal:false,cupo:1,activo:true,recursos:[3]},
+   {id:4,nombre:'Taller de peinados',duracion:60,precio:12000,grupal:true,cupo:4,activo:true,recursos:[4]}],
+  [{id:1,tipo:'profesional',nombre:'María González',rating:4.9,activo:true,avail:{1:['09:00','18:00'],2:['09:00','18:00'],3:['09:00','18:00'],4:['09:00','18:00'],5:['09:00','18:00'],6:['09:00','14:00']}},
+   {id:2,tipo:'profesional',nombre:'Camila Rojas',rating:4.6,activo:true,avail:{2:['10:00','19:00'],3:['10:00','19:00'],4:['10:00','19:00'],5:['10:00','19:00'],6:['10:00','19:00']}},
+   {id:3,tipo:'profesional',nombre:'Daniela Soto',rating:null,activo:true,avail:{1:['09:00','17:00'],3:['09:00','17:00'],5:['09:00','17:00'],6:['09:00','17:00']}},
+   {id:4,tipo:'sala',nombre:'Sala de talleres',rating:null,activo:true,avail:{3:['10:00','14:00'],6:['10:00','13:00']}}],
+  [{q:'¿Cuál es el horario de atención?',a:'Atendemos de lunes a sábado de 09:00 a 19:00 hrs.'},
+   {q:'¿Dónde están ubicados?',a:'Estamos en Av. Providencia 1234, Santiago, a pasos del metro.'},
+   {q:'¿Cuál es la política de cancelación?',a:'Puedes cancelar sin costo desde el enlace único que llega a tu correo de confirmación.'},
+   {q:'¿Qué medios de pago aceptan?',a:'El pago se realiza en el local: efectivo, transferencia o tarjeta (POS).'}],
+  [{id:1,nombre:'Camila Rojas',email:'camila@salonmaria.cl',activo:true,resId:2},
+   {id:2,nombre:'Daniela Soto',email:'daniela@salonmaria.cl',activo:true,resId:3}]);
+
+ /* --- Clínica Vida Sana (clínica / consultorio) --- */
+ const t2=makeTenant(2,'Clínica Vida Sana','Clínica / consultorio','activo','2026-08-21','Básico','clinica-vida-sana',
+  {nombre:'Clínica Vida Sana',direccion:'Av. Manquehue 500, Las Condes, Santiago',horario:'Lun a Vie 08:00–17:00 (Vie hasta 13:00)'},
+  [{id:1,nombre:'Consulta general',duracion:30,precio:20000,grupal:false,cupo:1,activo:true,recursos:[1,2]},
+   {id:2,nombre:'Consulta especialista',duracion:45,precio:35000,grupal:false,cupo:1,activo:true,recursos:[2]},
+   {id:3,nombre:'Control de enfermería',duracion:20,precio:8000,grupal:false,cupo:1,activo:true,recursos:[3]}],
+  [{id:1,tipo:'profesional',nombre:'Dr. Andrés Fuentes',rating:4.8,activo:true,avail:{1:['08:00','17:00'],2:['08:00','17:00'],3:['08:00','17:00'],4:['08:00','17:00'],5:['08:00','13:00']}},
+   {id:2,tipo:'profesional',nombre:'Dra. Bernarda Lagos',rating:null,activo:true,avail:{2:['09:00','18:00'],4:['09:00','18:00']}},
+   {id:3,tipo:'profesional',nombre:'Enfermera Paula Reyes',rating:4.5,activo:true,avail:{1:['08:00','17:00'],2:['08:00','17:00'],3:['08:00','17:00'],4:['08:00','17:00'],5:['08:00','17:00']}}],
+  [{q:'¿Atienden con Isapre o Fonasa?',a:'Trabajamos con boleta particular y convenio con las principales Isapres; también puedes reembolsar por Fonasa.'},
+   {q:'¿Cuál es el horario de atención?',a:'Atendemos de lunes a viernes de 08:00 a 17:00 (los viernes hasta las 13:00).'},
+   {q:'¿Dónde están ubicados?',a:'Estamos en Av. Manquehue 500, Las Condes.'},
+   {q:'¿Cuál es la política de cancelación?',a:'Puedes cancelar sin costo hasta 2 horas antes, desde el enlace único de tu correo de confirmación.'}],
+  [{id:1,nombre:'Dra. Bernarda Lagos',email:'bernarda@clinicavidasana.cl',activo:true,resId:2}]);
+
+ /* --- Studio Flow (gimnasio / estudio) --- */
+ const t3=makeTenant(3,'Studio Flow','Gimnasio / estudio','activo','2026-09-02','Básico','studio-flow',
+  {nombre:'Studio Flow',direccion:'Los Leones 220, Providencia, Santiago',horario:'Lun a Sáb 07:00–21:00'},
+  [{id:1,nombre:'Clase de Yoga',duracion:60,precio:9000,grupal:true,cupo:12,activo:true,recursos:[1]},
+   {id:2,nombre:'Clase de Spinning',duracion:45,precio:8000,grupal:true,cupo:15,activo:true,recursos:[2]},
+   {id:3,nombre:'Entrenamiento personalizado',duracion:60,precio:25000,grupal:false,cupo:1,activo:true,recursos:[3]}],
+  [{id:1,tipo:'sala',nombre:'Sala Yoga',rating:null,activo:true,avail:{1:['08:00','20:00'],3:['08:00','20:00'],5:['08:00','20:00']}},
+   {id:2,tipo:'sala',nombre:'Sala Spinning',rating:null,activo:true,avail:{2:['08:00','20:00'],4:['08:00','20:00'],6:['09:00','13:00']}},
+   {id:3,tipo:'profesional',nombre:'Ignacio Bravo',rating:4.7,activo:true,avail:{1:['07:00','21:00'],2:['07:00','21:00'],3:['07:00','21:00'],4:['07:00','21:00'],5:['07:00','21:00'],6:['09:00','14:00']}}],
+  [{q:'¿Cuál es el horario de atención?',a:'Abrimos de lunes a sábado de 07:00 a 21:00 hrs.'},
+   {q:'¿Dónde están ubicados?',a:'Estamos en Los Leones 220, Providencia.'},
+   {q:'¿Qué debo llevar a una clase?',a:'Ropa deportiva cómoda, toalla y botella de agua. Prestamos colchonetas para yoga.'},
+   {q:'¿Cuál es la política de cancelación de una clase?',a:'Puedes cancelar tu cupo sin costo hasta 3 horas antes de la clase.'}],
+  [{id:1,nombre:'Ignacio Bravo',email:'ignacio@studioflow.cl',activo:true,resId:3}]);
+
+ /* --- Barbería El Corte (inactivo — desactivado por la plataforma) --- */
+ const t4=makeTenant(4,'Barbería El Corte','Salón de belleza','inactivo','2026-09-10','Básico','barberia-el-corte',
+  {nombre:'Barbería El Corte',direccion:'San Diego 800, Santiago',horario:'Mar a Sáb 10:00–19:00'},
+  [{id:1,nombre:'Corte clásico',duracion:30,precio:8000,grupal:false,cupo:1,activo:true,recursos:[1]}],
+  [{id:1,tipo:'profesional',nombre:'Rodrigo Paredes',rating:4.3,activo:true,avail:{2:['10:00','19:00'],3:['10:00','19:00'],4:['10:00','19:00'],5:['10:00','19:00'],6:['10:00','19:00']}}],
+  [{q:'¿Cuál es el horario de atención?',a:'Atendemos de martes a sábado de 10:00 a 19:00 hrs.'}],
+  []);
+
+ DB.tenants=[t1,t2,t3,t4];
+ const nombres=['Ana Pérez','Luis Mora','Carla Núñez','Pedro Silva','Sofía Vera','Jorge Díaz','Valentina Ruiz','Tomás Vidal'];
+ seedBookings(t1,[{s:1,r:1,h:'10:00'},{s:1,r:2,h:'11:00'},{s:2,r:1,h:'14:00'},{s:3,r:3,h:'10:30'},{s:1,r:1,h:'16:00'},{s:4,r:4,h:'11:00'},{s:4,r:4,h:'11:00'},{s:2,r:3,h:'13:00'}],nombres);
+ seedBookings(t2,[{s:1,r:1,h:'09:00'},{s:1,r:2,h:'10:00'},{s:2,r:2,h:'11:00'},{s:3,r:3,h:'09:30'},{s:1,r:1,h:'11:00'},{s:3,r:3,h:'14:00'}],nombres);
+ seedBookings(t3,[{s:1,r:1,h:'08:00'},{s:1,r:1,h:'08:00'},{s:2,r:2,h:'18:00'},{s:2,r:2,h:'18:00'},{s:3,r:3,h:'10:00'},{s:3,r:3,h:'17:00'}],nombres);
+ CT=t1;
+}
+function seedBookings(tnt,tpl,nombres){
+ CT=tnt;
+ const t=new Date();
+ for(let off=-4;off<=6;off++){
+  const f=ymd(addDays(t,off));
+  tpl.forEach((x,i)=>{
+   if((off+i+8)%2!==0)return;
+   const s=svc(x.s);if(!s)return;
+   if(off<0){addRaw(tnt,x,f,nombres[(i+off+8)%nombres.length],'completada')}
+   else{const sl=slotsFor(s,f,x.r,null,true).find(z=>z.hora===x.h);if(sl)addRaw(tnt,x,f,nombres[(i+off+8)%nombres.length],'confirmada')}
+  });
+ }
+}
+function addRaw(tnt,x,f,cli,estado){
+ DB.seq++;
+ tnt.bookings.push({id:DB.seq,code:'EXP-'+(1000+DB.seq),serviceId:x.s,resId:x.r,fecha:f,hora:x.h,cliente:cli,email:norm(cli).replace(/\W+/g,'.')+'@correo.cl',estado,canal:'web'});
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(DB));sessionStorage.setItem(KEY+'-s',JSON.stringify(session))}catch(e){}}
+function load(){
+ try{const r=localStorage.getItem(KEY);if(r){const d=JSON.parse(r);if(d.seedDate===todayS()){DB=d;CT=DB.tenants[0]}}
+  const s=sessionStorage.getItem(KEY+'-s');if(s)session=JSON.parse(s)}catch(e){}
+ if(!DB)seed();
+}
+function resetData(){if(!confirm('¿Reiniciar todos los datos de demostración?'))return;seed();chat.msgs=[];chat.ctx={};chat.step=null;chat.init=false;chat.tenantId=null;save();toast('Datos reiniciados','ok');render();chatRender()}
+
+/* ================= dominio ================= */
+const svc=id=>CT.services.find(s=>s.id===id);
+const res=id=>CT.resources.find(r=>r.id===id);
+const tenant=()=>CT;
+function blockedAt(resId,f,a,b){return CT.blocks.some(k=>k.resId===resId&&k.fecha===f&&toMin(k.desde)<b&&toMin(k.hasta)>a)}
+function overl(resId,f,a,b,ex){return CT.bookings.filter(x=>x.id!==ex&&x.estado==='confirmada'&&x.resId===resId&&x.fecha===f&&toMin(x.hora)<b&&toMin(x.hora)+svc(x.serviceId).duracion>a)}
+function slotsFor(s,f,resId,ex,ignorePast){
+ const r=res(resId);if(!r||!r.activo)return[];
+ const av=r.avail[pd(f).getDay()];if(!av)return[];
+ const out=[],now=new Date(),nm=now.getHours()*60+now.getMinutes();
+ for(let m=toMin(av[0]);m+s.duracion<=toMin(av[1]);m+=30){
+  if(!ignorePast&&f===todayS()&&m<=nm)continue;
+  if(f<todayS()&&!ignorePast)continue;
+  if(blockedAt(resId,f,m,m+s.duracion))continue;
+  const ov=overl(resId,f,m,m+s.duracion,ex);
+  if(s.grupal){
+   if(ov.every(x=>x.serviceId===s.id&&toMin(x.hora)===m)&&ov.length<s.cupo)out.push({hora:fromMin(m),cupos:s.cupo-ov.length});
+  }else if(ov.length===0)out.push({hora:fromMin(m),cupos:null});
+ }
+ return out;
+}
+function availability(s,f){
+ const map={};
+ s.recursos.forEach(id=>{const r=res(id);if(!r||!r.activo)return;slotsFor(s,f,id).forEach(sl=>{(map[sl.hora]=map[sl.hora]||[]).push({res:r,cupos:sl.cupos})})});
+ return Object.keys(map).sort().map(h=>({hora:h,opciones:map[h].sort((a,b)=>(b.res.rating??-1)-(a.res.rating??-1))}));
+}
+function pushMail(to,asunto,cuerpo,tipo){CT.mails.unshift({id:Date.now()+Math.random(),to,asunto,cuerpo,tipo,ts:new Date().toISOString()})}
+function createBooking(p){
+ const s=svc(p.serviceId);
+ if(!s||!s.activo)return{ok:false,error:'Este servicio no está disponible.'};
+ if(s.grupal&&overl(p.resId,p.fecha,toMin(p.hora),toMin(p.hora)+s.duracion).filter(x=>x.serviceId===s.id&&x.hora===p.hora).length>=s.cupo)
+  return{ok:false,error:'El cupo de este bloque ya se completó.'};
+ if(!slotsFor(s,p.fecha,p.resId).find(x=>x.hora===p.hora))
+  return{ok:false,error:'Ese horario ya no está disponible. Actualiza los horarios e inténtalo de nuevo.'};
+ DB.seq++;
+ const b={id:DB.seq,code:'EXP-'+(1000+DB.seq),serviceId:p.serviceId,resId:p.resId,fecha:p.fecha,hora:p.hora,cliente:p.cliente,email:p.email,estado:'confirmada',canal:p.canal||'web'};
+ CT.bookings.push(b);
+ const r=res(b.resId);
+ pushMail(b.email,`Reserva confirmada ${b.code}`,`Hola ${b.cliente}, tu reserva de ${s.nombre} con ${r.nombre} es el ${fmtDay(b.fecha)} a las ${b.hora}. Para cancelarla usa este enlace único: #/${tenant().slug}/cancelar/${b.code}`,'Confirmación al cliente');
+ pushMail(ownerEmail(CT),`Nueva reserva ${b.code}`,`${b.cliente} reservó ${s.nombre} (${fmtDay(b.fecha)} ${b.hora}) con ${r.nombre} vía ${b.canal}.`,'Aviso al negocio');
+ return{ok:true,booking:b};
+}
+function cancelBooking(id,por){
+ const b=CT.bookings.find(x=>x.id===id);if(!b||b.estado!=='confirmada')return false;
+ b.estado='cancelada';
+ pushMail(b.email,`Reserva cancelada ${b.code}`,`Tu reserva del ${fmtDay(b.fecha)} ${b.hora} fue cancelada por ${por}.`,'Cancelación');
+ return true;
+}
+function rescheduleBooking(id,f,h,resId){
+ const b=CT.bookings.find(x=>x.id===id),s=svc(b.serviceId);
+ if(!slotsFor(s,f,resId,id).find(x=>x.hora===h))return false;
+ b.fecha=f;b.hora=h;b.resId=resId;
+ pushMail(b.email,`Reserva modificada ${b.code}`,`Tu reserva de ${s.nombre} ahora es el ${fmtDay(f)} a las ${h} con ${res(resId).nombre}.`,'Modificación');
+ return true;
+}
+
+/* ================= router ================= */
+const parse=()=>(location.hash||'#/').slice(1).split('/').filter(Boolean);
+let lastHash=null;
+function go(h){if(location.hash==='#'+h)render();else location.hash=h}
+const home=s=>s.rol==='SUPER'?'/admin/tenants':s.rol==='DUENO'?'/app/dashboard':'/app/agenda';
+const pageRoles={dashboard:['DUENO'],agenda:['DUENO','STAFF'],servicios:['DUENO'],recursos:['DUENO'],staff:['DUENO'],negocio:['DUENO'],asistente:['DUENO'],notificaciones:['DUENO'],disponibilidad:['STAFF']};
+function render(){
+ save();
+ const y=window.scrollY,changed=lastHash!==location.hash;lastHash=location.hash;
+ const p=parse();let html='';
+ const matched=p.length?findTenant(p[0]):null;
+ if(!p.length||p[0]==='login')html=viewLogin();
+ else if(p[0]==='roles')html=viewRoles();
+ else if(matched){
+  if(chat.tenantId!==matched.id){chat.msgs=[];chat.ctx={};chat.step=null;chat.init=false;chat.tenantId=matched.id}
+  if(pub.tenantId!==matched.id)pub={step:1,tenantId:matched.id,serviceId:null,fecha:null,hora:null,resId:null,nombre:'',email:'',err:'',booking:null};
+  CT=matched;
+  html=p[1]==='cancelar'?viewCancel(p[2]):viewPublic();
+ }
+ else if(p[0]==='app'){
+  if(!session)html=viewDenied('authGuard: no hay sesión activa. Redirigiría a /auth/login.');
+  else if(session.rol==='SUPER')html=viewDenied(`roleGuard: el rol ${ROLENUM[session.rol]} no puede acceder a /app/${p[1]||''}.`);
+  else{
+   const t=DB.tenants.find(x=>x.id===session.tenantId);
+   if(!t){html=viewDenied('El tenant asociado a esta cuenta ya no existe.')}
+   else{
+    CT=t;
+    if(!(pageRoles[p[1]]||[]).includes(session.rol))html=viewDenied(`roleGuard: el rol ${ROLENUM[session.rol]} no puede acceder a /app/${p[1]||''}.`);
+    else html=viewAdmin(p[1]);
+   }
+  }
+ }
+ else if(p[0]==='admin'){
+  if(!session)html=viewDenied('authGuard: no hay sesión activa. Redirigiría a /auth/login.');
+  else if(session.rol!=='SUPER')html=viewDenied(`roleGuard(['SUPER_ADMIN']): el rol ${ROLENUM[session.rol]} no puede acceder a /admin.`);
+  else html=viewSuper();
+ }
+ else html=viewDenied('Ruta inexistente.');
+ demoBar();
+ $('#app').innerHTML=html;
+ chatVisibility(!!matched&&matched.estado==='activo'&&p[1]!=='cancelar');
+ window.scrollTo(0,changed?0:y);
+}
+window.addEventListener('hashchange',()=>{closeModal();render()});
+
+function demoBar(){
+ const tnt=session&&session.tenantId?DB.tenants.find(x=>x.id===session.tenantId):null;
+ const cur=session?ROLNAME[session.rol]+(tnt?' · '+tnt.nombre:''):'Cliente Final (sin sesión)';
+ let opts='<option value="">— elegir cuenta / negocio —</option><option value="SUPER">Super Admin (plataforma)</option>';
+ DB.tenants.forEach(t=>{
+  const owner=USERS.find(u=>u.rol==='DUENO'&&u.tenantId===t.id);
+  const staffs=USERS.filter(u=>u.rol==='STAFF'&&u.tenantId===t.id);
+  const tag=t.estado==='activo'?'':' (inactivo)';
+  if(owner)opts+=`<option value="U:${owner.email}">Dueño · ${esc(t.nombre)}${tag}</option>`;
+  staffs.forEach(s=>{const parts=s.nombre.split(' ').filter(w=>!/\.$/.test(w));opts+=`<option value="U:${s.email}">Staff ${esc(parts[0]||s.nombre)} · ${esc(t.nombre)}${tag}</option>`});
+  opts+=`<option value="C:${t.slug}">Cliente Final · ${esc(t.nombre)}${tag}</option>`;
+ });
+ $('#demobar').innerHTML=`<div class="demo"><b>Expertia · Mockup</b><span>Actual: <span class="chip">${cur}</span></span>
+ <span>Cambiar: <select onchange="quickLogin(this.value);this.value=''">${opts}</select></span>
+ <a href="#/roles" style="color:#5eead4">Matriz de roles</a><a href="#/" style="color:#5eead4">Inicio</a>
+ ${session&&session.rol!=='SUPER'?`<a href="#/admin/tenants" style="color:#fca5a5">Probar acceso a /admin</a>`:''}
+ <label><input type="checkbox" ${DB.llmDown?'checked':''} onchange="DB.llmDown=this.checked;save();toast(this.checked?'Proveedor LLM caído (simulado)':'Proveedor LLM restablecido')"> Simular caída del LLM</label>
+ <button class="btn" onclick="resetData()">Reiniciar datos</button></div>`;
+}
+
+/* ================= toast / modal ================= */
+function toast(m,t){const d=document.createElement('div');d.className='toast '+(t||'');d.textContent=m;$('#toasts').appendChild(d);setTimeout(()=>d.remove(),3200)}
+function openModal(h){$('#modal').innerHTML=`<div class="mbox">${h}</div>`;$('#modal').classList.add('on')}
+function closeModal(){$('#modal').classList.remove('on');$('#modal').innerHTML=''}
+$('#modal').addEventListener('mousedown',e=>{if(e.target.id==='modal')closeModal()});
+
+/* ================= login / roles ================= */
+let loginErr='';
+function viewLogin(){
+ return `<div class="landing"><div class="landing-in">
+  <span class="k">✦ Plataforma SaaS de agendamiento</span>
+  <h1>Expertia — la forma más simple de administrar reservas y citas</h1>
+  <p>Mockup semi funcional del MVP. Elige un rol para explorar el sistema desde su punto de vista — todo se simula y se guarda solo en este navegador.</p>
+ </div></div>
+ <div class="wrap" style="padding-top:0">
+ <div class="grid g4" style="margin:0 0 18px">
+  ${[['SUPER','🛡️','Super Admin','Administra tenants a nivel plataforma. Sin acceso a datos operativos.','SUPER'],['DUENO','🏪','Dueño de Negocio','Configura servicios, recursos, staff y ve el dashboard.','U:maria@salonmaria.cl'],['STAFF','✂️','Staff / Profesional','Gestiona su propia agenda y disponibilidad.','U:camila@salonmaria.cl'],['CLIENTE','🙋','Cliente Final','Reserva desde la página pública o con el asistente de chat.','C:salon-maria']].map(r=>`<div class="card role" onclick="quickLogin('${r[4]}')"><div class="ic">${r[1]}</div><h3>${r[2]}</h3><p class="muted small">${r[3]}</p><span class="badge br">${ROLENUM[r[0]]}</span></div>`).join('')}
+ </div>
+ <p class="muted small" style="margin-top:-6px">Estas tarjetas abren Salón María. Usa el selector "Cambiar" en la barra superior para entrar a Clínica Vida Sana, Studio Flow, o su Barbería (inactiva).</p>
+ <div class="card" style="max-width:460px"><h3>Iniciar sesión (UC-02)</h3>
+  ${loginErr?`<div class="err">${loginErr}</div>`:''}
+  <label>Correo</label><input id="lg-e" value="maria@salonmaria.cl">
+  <label>Contraseña</label><input id="lg-p" type="password" value="demo1234">
+  <div class="row" style="margin-top:12px"><button class="btn p" onclick="doLogin()">Entrar</button></div>
+  <p class="muted small">Cuentas demo (clave <b>demo1234</b>): super@expertia.cl · maria@salonmaria.cl (Salón María) · carla@clinicavidasana.cl (Clínica Vida Sana) · fernanda@studioflow.cl (Studio Flow). También puedes usar el selector "Cambiar" en la barra superior para saltar entre negocios, staff y clientes.</p></div></div>`;
+}
+function tryLogin(email,pass){
+ const u=USERS.find(x=>x.email===email.trim().toLowerCase());
+ if(!u||pass!=='demo1234'){loginErr='Credenciales inválidas.';return false}
+ if(u.rol!=='SUPER'){
+  const t=DB.tenants.find(x=>x.id===u.tenantId);
+  if(!t||t.estado!=='activo'){loginErr='Tu cuenta no está disponible.';return false}
+  if(u.rol==='STAFF'){const s=t.staff.find(x=>x.email===u.email);if(!s||!s.activo){loginErr='Tu cuenta no está disponible.';return false}}
+ }
+ loginErr='';session={...u};return true;
+}
+function doLogin(){if(tryLogin($('#lg-e').value,$('#lg-p').value))go(home(session));else render()}
+function quickLogin(v){
+ if(!v)return;
+ if(v==='SUPER'){if(tryLogin('super@expertia.cl','demo1234'))go(home(session));return}
+ if(v.startsWith('U:')){if(tryLogin(v.slice(2),'demo1234'))go(home(session));else{session=null;go('/');toast(loginErr,'bad')}return}
+ if(v.startsWith('C:')){session=null;return go('/'+v.slice(2))}
+}
+function logout(){session=null;go('/')}
+function viewRoles(){
+ const Y='✔',N='—';
+ const rows=[
+  ['Ver y listar tenants (metadatos)',Y,N,N,N],
+  ['Activar / desactivar un tenant',Y,N,N,N],
+  ['Acceder a datos operativos (reservas, clientes)','✖ (RN-010)',Y,'Solo sus recursos',N],
+  ['Configurar negocio, servicios y recursos',N,Y,N,N],
+  ['Gestionar staff (invitar, activar/desactivar)',N,Y,N,N],
+  ['Calificar profesionales y configurar FAQ del asistente',N,Y,N,N],
+  ['Configurar disponibilidad de recursos',N,Y,'Solo la propia',N],
+  ['Ver agenda de citas',N,'Todos los recursos','Recursos asignados',N],
+  ['Modificar / cancelar reservas',N,Y,Y,N],
+  ['Dashboard y exportar reporte de citas',N,Y,N,N],
+  ['Consultar disponibilidad y reservar (web o chat)',N,N,N,Y],
+  ['Cancelar su propia reserva por enlace único',N,N,N,Y]];
+ return `<div class="wrap"><h1>Matriz de roles y permisos</h1><p class="muted">Basada en el SRS (RF-003, RN-005, RN-010) y los casos de uso UC-01 a UC-23. Se aplica en el mockup con authGuard y roleGuard.</p>
+ <div class="card tw"><table><tr><th>Capacidad</th><th>Super Admin</th><th>Dueño de Negocio</th><th>Staff</th><th>Cliente Final</th></tr>
+ ${rows.map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(c=>`<td>${c===Y?'<span class="badge ok">✔</span>':c===N?'<span class="muted">—</span>':`<span class="badge ${c.startsWith('✖')?'bad':'warn'}">${c}</span>`}</td>`).join('')}</tr>`).join('')}
+ </table></div><div class="row" style="margin-top:14px"><a class="btn" href="#/">← Volver</a></div></div>`;
+}
+function viewDenied(msg){
+ return `<div class="wrap"><div class="card" style="max-width:520px;margin:40px auto;text-align:center"><div style="font-size:40px">🚫</div><h2>Sin permiso</h2><p class="muted">${esc(msg)}</p><div class="row" style="justify-content:center"><a class="btn p" href="#/">Ir al inicio</a>${session?`<a class="btn" href="#${home(session)}">Volver a mi panel</a>`:''}</div></div></div>`;
+}
+
+/* ================= layout admin ================= */
+function adminShell(page,inner){
+ const items=session.rol==='DUENO'?[['dashboard','📊 Dashboard'],['agenda','📅 Agenda'],['servicios','💇 Servicios'],['recursos','🧰 Recursos'],['staff','👥 Staff'],['negocio','🏪 Mi negocio'],['asistente','🤖 Asistente (FAQ)'],['notificaciones','✉️ Notificaciones']]:[['agenda','📅 Mi agenda'],['disponibilidad','🕒 Mi disponibilidad']];
+ return `<div class="shell"><aside class="side"><div class="brand"><span class="mark">E</span>Expertia</div><nav class="nav">
+ ${items.map(i=>`<a class="${i[0]===page?'on':''}" href="#/app/${i[0]}">${i[1]}</a>`).join('')}
+ <a href="#/${tenant().slug}" target="_blank">🔗 Ver página pública</a></nav></aside>
+ <div class="main"><div class="top"><div><b>${esc(CT.negocio.nombre)}</b> <span class="muted small">· tenant activo</span></div><div class="row"><span class="badge br">${ROLNAME[session.rol]}</span><span class="small">${esc(session.nombre)}</span><button class="btn s" onclick="logout()">Salir</button></div></div>
+ <div class="content">${inner}</div></div></div>`;
+}
+function viewAdmin(p){
+ const page=p||(session.rol==='DUENO'?'dashboard':'agenda');
+ const f={dashboard:pgDashboard,agenda:pgAgenda,servicios:pgServicios,recursos:pgRecursos,staff:pgStaff,negocio:pgNegocio,asistente:pgAsistente,notificaciones:pgMails,disponibilidad:pgMiDisp}[page];
+ if(!f)return viewDenied('Página inexistente.');
+ return adminShell(page,f());
+}
+
+/* ---------- dashboard ---------- */
+function weekDates(){return[...Array(7)].map((_,i)=>ymd(addDays(new Date(),i)))}
+function pgDashboard(){
+ const wk=weekDates(),conf=CT.bookings.filter(b=>b.estado==='confirmada');
+ const hoy=conf.filter(b=>b.fecha===todayS()).length,sem=conf.filter(b=>wk.includes(b.fecha)).length;
+ let disp=0;CT.resources.filter(r=>r.activo&&r.tipo==='profesional').forEach(r=>wk.forEach(f=>{const a=r.avail[pd(f).getDay()];if(a)disp+=toMin(a[1])-toMin(a[0])}));
+ const seen=new Set();let occ=0;conf.filter(b=>wk.includes(b.fecha)&&res(b.resId).tipo==='profesional').forEach(b=>{const k=[b.resId,b.fecha,b.hora,b.serviceId].join('|');if(seen.has(k))return;seen.add(k);occ+=svc(b.serviceId).duracion});
+ const pct=disp?Math.round(occ/disp*100):0;
+ const per=wk.map(f=>conf.filter(b=>b.fecha===f).length),mx=Math.max(1,...per);
+ const prox=conf.filter(b=>b.fecha>=todayS()).sort((a,b)=>(a.fecha+a.hora).localeCompare(b.fecha+b.hora)).slice(0,6);
+ const mes=todayS().slice(0,7);
+ return `<h2>Dashboard</h2><p class="muted">Métricas operativas del negocio (UC-17, RF-029).</p>
+ <div class="grid g4"><div class="card kpi"><div class="muted small">Citas hoy</div><div class="n">${hoy}</div></div><div class="card kpi"><div class="muted small">Citas próximos 7 días</div><div class="n">${sem}</div></div><div class="card kpi"><div class="muted small">Ocupación de profesionales (7 días)</div><div class="n">${pct}%</div></div><div class="card kpi"><div class="muted small">Reservas por chat</div><div class="n">${conf.filter(b=>b.canal==='chat').length}</div></div></div>
+ <div class="grid g2" style="margin-top:14px">
+ <div class="card"><h3>Citas por día</h3><div class="bars">${per.map((n,i)=>`<div class="bar">${n}<i style="height:${n/mx*100}%"></i><span>${fmtDay(wk[i])}</span></div>`).join('')}</div></div>
+ <div class="card"><h3>Próximas citas</h3>${prox.length?prox.map(b=>`<div class="row" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0"><span><b>${fmtDay(b.fecha)} ${b.hora}</b> · ${esc(svc(b.serviceId).nombre)}</span><span class="muted small">${esc(b.cliente)}</span></div>`).join(''):'<p class="muted">Sin citas próximas.</p>'}</div></div>
+ <div class="card" style="margin-top:14px"><h3>Exportar reporte de citas (UC-18)</h3><div class="row"><input id="rep-m" type="month" value="${mes}" style="width:auto"><button class="btn p" onclick="exportCSV()">Descargar CSV</button></div></div>`;
+}
+function exportCSV(){
+ const m=$('#rep-m').value;const rows=CT.bookings.filter(b=>b.fecha.startsWith(m));
+ if(!rows.length)return toast('No hay citas en el período seleccionado','bad');
+ const csv=['Codigo,Fecha,Hora,Servicio,Recurso,Cliente,Email,Estado,Canal',...rows.sort((a,b)=>(a.fecha+a.hora).localeCompare(b.fecha+b.hora)).map(b=>[b.code,b.fecha,b.hora,svc(b.serviceId).nombre,res(b.resId).nombre,b.cliente,b.email,b.estado,b.canal].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','))].join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));a.download=`reporte-citas-${m}.csv`;a.click();toast('Reporte generado','ok');
+}
+
+/* ---------- agenda ---------- */
+let ag={modo:'dia',fecha:todayS()};
+function pgAgenda(){
+ const dueño=session.rol==='DUENO';
+ const days=ag.modo==='dia'?[ag.fecha]:[...Array(7)].map((_,i)=>ymd(addDays(pd(ag.fecha),i)));
+ let list=CT.bookings.filter(b=>days.includes(b.fecha)&&(dueño||b.resId===session.resId)).sort((a,b)=>(a.fecha+a.hora).localeCompare(b.fecha+b.hora));
+ const st={confirmada:'ok',cancelada:'bad',completada:''};
+ return `<h2>${dueño?'Agenda del negocio':'Mi agenda'}</h2><p class="muted">${dueño?'Ves todos los recursos del tenant.':'Ves únicamente los recursos que tienes asignados (UC-12, A1).'}</p>
+ <div class="row" style="margin-bottom:12px"><button class="btn s" onclick="agMove(-1)">◀</button><input type="date" value="${ag.fecha}" style="width:auto" onchange="ag.fecha=this.value||todayS();render()"><button class="btn s" onclick="agMove(1)">▶</button>
+ <button class="btn s ${ag.modo==='dia'?'p':''}" onclick="ag.modo='dia';render()">Día</button><button class="btn s ${ag.modo==='semana'?'p':''}" onclick="ag.modo='semana';render()">Semana</button><button class="btn s" onclick="ag.fecha=todayS();render()">Hoy</button></div>
+ <div class="card tw"><table><tr><th>Fecha</th><th>Hora</th><th>Servicio</th><th>Recurso</th><th>Cliente</th><th>Estado</th><th></th></tr>
+ ${list.length?list.map(b=>`<tr class="${b.estado==='cancelada'?'dim':''}"><td>${fmtDay(b.fecha)}</td><td><b>${b.hora}</b></td><td>${esc(svc(b.serviceId).nombre)}</td><td>${esc(res(b.resId).nombre)}</td><td>${esc(b.cliente)}<div class="muted small">${esc(b.code)} · ${b.canal}</div></td><td><span class="badge ${st[b.estado]}">${b.estado}</span></td><td>${b.estado==='confirmada'?`<button class="btn s" onclick="modOpen(${b.id})">Modificar</button> <button class="btn s d" onclick="agCancel(${b.id})">Cancelar</button>`:''}</td></tr>`).join(''):'<tr><td colspan="7" class="muted">No hay citas en este rango.</td></tr>'}
+ </table></div>`;
+}
+function agMove(n){ag.fecha=ymd(addDays(pd(ag.fecha),n*(ag.modo==='dia'?1:7)));render()}
+function agCancel(id){if(!confirm('¿Cancelar esta reserva? Se notificará al cliente.'))return;if(cancelBooking(id,'el negocio'))toast('Reserva cancelada y horario liberado','ok');else toast('La operación no es válida en el estado actual','bad');render()}
+let mod=null;
+function modOpen(id){const b=CT.bookings.find(x=>x.id===id);mod={id,fecha:b.fecha,hora:b.hora,resId:b.resId};modDraw()}
+function modDraw(){
+ const b=CT.bookings.find(x=>x.id===mod.id),s=svc(b.serviceId);
+ const opts=s.recursos.filter(r=>session.rol==='DUENO'||r===session.resId);
+ const sl=slotsFor(s,mod.fecha,mod.resId,mod.id);
+ openModal(`<h2>Modificar reserva ${esc(b.code)}</h2><p class="muted">${esc(s.nombre)} · ${esc(b.cliente)}</p>
+ <label>Recurso</label><select onchange="mod.resId=+this.value;mod.hora='';modDraw()">${opts.map(r=>`<option value="${r}" ${r===mod.resId?'selected':''}>${esc(res(r).nombre)}</option>`).join('')}</select>
+ <label>Fecha</label><input type="date" min="${todayS()}" value="${mod.fecha}" onchange="mod.fecha=this.value;mod.hora='';modDraw()">
+ <label>Horarios disponibles</label><div class="chips">${sl.length?sl.map(x=>`<button class="c ${x.hora===mod.hora?'on':''}" onclick="mod.hora='${x.hora}';modDraw()">${x.hora}</button>`).join(''):'<span class="muted">Sin horarios ese día.</span>'}</div>
+ <div class="row" style="margin-top:16px;justify-content:flex-end"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn p" ${mod.hora?'':'disabled'} onclick="modSave()">Guardar cambio</button></div>`);
+}
+function modSave(){if(rescheduleBooking(mod.id,mod.fecha,mod.hora,mod.resId)){closeModal();toast('Reserva modificada y cliente notificado','ok');render()}else toast('El nuevo horario no está disponible. Se mantiene la reserva original.','bad')}
+
+/* ---------- servicios ---------- */
+function pgServicios(){
+ return `<div class="row" style="justify-content:space-between"><div><h2>Catálogo de servicios</h2><p class="muted">UC-06 y UC-09 (servicios grupales con cupo).</p></div><button class="btn p" onclick="svcForm()">+ Nuevo servicio</button></div>
+ <div class="card tw"><table><tr><th>Servicio</th><th>Duración</th><th>Precio</th><th>Tipo</th><th>Recursos</th><th>Estado</th><th></th></tr>
+ ${CT.services.map(s=>`<tr class="${s.activo?'':'dim'}"><td><b>${esc(s.nombre)}</b></td><td>${s.duracion} min</td><td>${money(s.precio)}</td><td>${s.grupal?`<span class="badge br">Grupal · cupo ${s.cupo}</span>`:'Individual'}</td><td class="small">${s.recursos.map(r=>esc(res(r)?.nombre||'')).join(', ')||'<span class="muted">Sin recursos</span>'}</td><td><span class="badge ${s.activo?'ok':''}">${s.activo?'activo':'inactivo'}</span></td><td><button class="btn s" onclick="svcForm(${s.id})">Editar</button> <button class="btn s d" onclick="svcDel(${s.id})">Eliminar</button></td></tr>`).join('')}</table></div>`;
+}
+function svcForm(id){
+ const s=id?svc(id):{nombre:'',duracion:30,precio:10000,grupal:false,cupo:1,activo:true,recursos:[]};
+ openModal(`<h2>${id?'Editar':'Nuevo'} servicio</h2>
+ <label>Nombre</label><input id="sv-n" value="${esc(s.nombre)}">
+ <div class="row"><div style="flex:1"><label>Duración (min)</label><input id="sv-d" type="number" value="${s.duracion}"></div><div style="flex:1"><label>Precio (CLP)</label><input id="sv-p" type="number" value="${s.precio}"></div></div>
+ <label><input id="sv-g" type="checkbox" ${s.grupal?'checked':''} onchange="$('#sv-c').disabled=!this.checked"> Servicio grupal</label>
+ <label>Cupo máximo</label><input id="sv-c" type="number" value="${s.cupo}" ${s.grupal?'':'disabled'}>
+ <label>Recursos asociados</label>${CT.resources.map(r=>`<label style="color:var(--ink);margin:2px 0"><input type="checkbox" class="sv-r" value="${r.id}" ${s.recursos.includes(r.id)?'checked':''}> ${esc(r.nombre)} <span class="muted small">(${r.tipo})</span></label>`).join('')}
+ <label><input id="sv-a" type="checkbox" ${s.activo?'checked':''}> Activo</label>
+ <div id="sv-e"></div><div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn p" onclick="svcSave(${id||0})">Guardar</button></div>`);
+}
+function svcSave(id){
+ const n=$('#sv-n').value.trim(),d=+$('#sv-d').value,p=+$('#sv-p').value,g=$('#sv-g').checked,c=+$('#sv-c').value;
+ const e=!n?'El nombre es obligatorio.':!(d>0)?'La duración debe ser mayor a cero.':p<0?'El precio no puede ser negativo.':g&&!(c>0)?'El cupo máximo debe ser mayor a cero.':'';
+ if(e){$('#sv-e').innerHTML=`<div class="err">${e}</div>`;return}
+ const o={nombre:n,duracion:d,precio:p,grupal:g,cupo:g?c:1,activo:$('#sv-a').checked,recursos:[...document.querySelectorAll('.sv-r:checked')].map(x=>+x.value)};
+ if(id)Object.assign(svc(id),o);else CT.services.push({id:Math.max(0,...CT.services.map(s=>s.id))+1,...o});
+ closeModal();toast('Servicio guardado','ok');render();
+}
+function svcDel(id){
+ const bs=CT.bookings.filter(b=>b.serviceId===id);
+ if(bs.some(b=>b.estado==='confirmada'&&b.fecha>=todayS()))return toast('Tiene reservas futuras activas. Desactívalo en lugar de eliminarlo.','bad');
+ if(!confirm('¿Eliminar este servicio?'))return;
+ if(bs.length){svc(id).activo=false;toast('Tiene historial de reservas: se marcó como inactivo','ok')}
+ else{CT.services=CT.services.filter(s=>s.id!==id);toast('Servicio eliminado','ok')}
+ render();
+}
+
+/* ---------- recursos ---------- */
+function availSummary(r){const k=Object.keys(r.avail);return k.length?[1,2,3,4,5,6,0].filter(d=>r.avail[d]).map(d=>DAYS[d]).join(' '):'<span class="badge warn">No reservable</span>'}
+function pgRecursos(){
+ return `<div class="row" style="justify-content:space-between"><div><h2>Recursos</h2><p class="muted">Profesionales, salas y equipos (UC-07, UC-08). La calificación (1.0–5.0) la asigna el dueño y la usa el asistente para recomendar (RF-034, RN-011).</p></div><button class="btn p" onclick="resForm()">+ Nuevo recurso</button></div>
+ <div class="card tw"><table><tr><th>Recurso</th><th>Tipo</th><th>Calificación</th><th>Servicios</th><th>Disponibilidad</th><th>Estado</th><th></th></tr>
+ ${CT.resources.map(r=>`<tr class="${r.activo?'':'dim'}"><td><b>${esc(r.nombre)}</b></td><td><span class="badge">${r.tipo}</span></td><td>${r.tipo==='profesional'?stars(r.rating):'<span class="muted">—</span>'}</td><td class="small">${CT.services.filter(s=>s.recursos.includes(r.id)).map(s=>esc(s.nombre)).join(', ')||'—'}</td><td class="small">${availSummary(r)}</td><td><span class="badge ${r.activo?'ok':''}">${r.activo?'activo':'inactivo'}</span></td><td><button class="btn s" onclick="resForm(${r.id})">Editar</button> <button class="btn s" onclick="dispForm(${r.id})">Disponibilidad</button></td></tr>`).join('')}</table></div>`;
+}
+function resForm(id){
+ const r=id?res(id):{tipo:'profesional',nombre:'',rating:null,activo:true};
+ openModal(`<h2>${id?'Editar':'Nuevo'} recurso</h2>
+ <label>Tipo</label><select id="rs-t"><option ${r.tipo==='profesional'?'selected':''}>profesional</option><option ${r.tipo==='sala'?'selected':''}>sala</option><option ${r.tipo==='equipo'?'selected':''}>equipo</option></select>
+ <label>Nombre</label><input id="rs-n" value="${esc(r.nombre)}">
+ <label>Calificación 1.0–5.0 (opcional, solo profesionales)</label><input id="rs-r" type="number" step="0.1" min="1" max="5" value="${r.rating??''}">
+ <label><input id="rs-a" type="checkbox" ${r.activo?'checked':''}> Activo</label>
+ <div id="rs-e"></div><div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn p" onclick="resSave(${id||0})">Guardar</button></div>`);
+}
+function resSave(id){
+ const n=$('#rs-n').value.trim(),t=$('#rs-t').value,rv=$('#rs-r').value,rt=rv===''?null:+rv;
+ const e=!n?'El nombre es obligatorio.':(t==='profesional'&&rt!=null&&(rt<1||rt>5))?'La calificación debe estar entre 1.0 y 5.0.':'';
+ if(e){$('#rs-e').innerHTML=`<div class="err">${e}</div>`;return}
+ const o={tipo:t,nombre:n,rating:t==='profesional'?rt:null,activo:$('#rs-a').checked};
+ if(id)Object.assign(res(id),o);else CT.resources.push({id:Math.max(0,...CT.resources.map(r=>r.id))+1,avail:{},...o});
+ closeModal();toast('Recurso guardado','ok');render();
+}
+let dispRes=null;
+function dispForm(id){dispRes=id;dispDraw()}
+function dispDraw(){
+ const r=res(dispRes);
+ openModal(`<h2>Disponibilidad · ${esc(r.nombre)}</h2><p class="muted small">Horario semanal recurrente (RF-015) y bloqueos puntuales (RF-016).</p>
+ ${[1,2,3,4,5,6,0].map(d=>{const a=r.avail[d];return `<div class="row" style="margin:4px 0"><label style="width:110px;color:var(--ink);margin:0"><input type="checkbox" id="dc${d}" ${a?'checked':''}> ${DAYS_L[d]}</label><input type="time" id="ds${d}" value="${a?a[0]:'09:00'}" style="width:110px"><span>a</span><input type="time" id="de${d}" value="${a?a[1]:'18:00'}" style="width:110px"></div>`}).join('')}
+ <div id="dp-e"></div><div class="row" style="margin:10px 0"><button class="btn p" onclick="dispSave()">Guardar horario semanal</button></div>
+ <h3 style="margin-top:14px">Bloqueos y ausencias</h3>
+ ${CT.blocks.filter(k=>k.resId===r.id).map(k=>`<div class="row small" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:4px 0"><span>${fmtDay(k.fecha)} ${k.desde}–${k.hasta} · ${esc(k.motivo)}</span><button class="btn s d" onclick="blkDel(${k.id})">Quitar</button></div>`).join('')||'<p class="muted small">Sin bloqueos.</p>'}
+ <div class="row" style="margin-top:8px"><input type="date" id="bk-f" min="${todayS()}" style="width:150px"><input type="time" id="bk-d" value="09:00" style="width:105px"><input type="time" id="bk-h" value="13:00" style="width:105px"><input id="bk-m" placeholder="Motivo" style="flex:1;min-width:100px"><button class="btn" onclick="blkAdd()">Agregar</button></div>
+ <div class="row" style="margin-top:16px;justify-content:flex-end"><button class="btn" onclick="closeModal();render()">Cerrar</button></div>`);
+}
+function dispSave(){
+ const r=res(dispRes),n={};
+ for(const d of [0,1,2,3,4,5,6]){if($('#dc'+d).checked){const s=$('#ds'+d).value,e=$('#de'+d).value;if(!s||!e||toMin(e)<=toMin(s)){$('#dp-e').innerHTML=`<div class="err">${DAYS_L[d]}: la hora de fin debe ser posterior a la de inicio.</div>`;return}n[d]=[s,e]}}
+ r.avail=n;save();toast('Disponibilidad guardada','ok');
+ $('#dp-e').innerHTML='<div class="okbox">Guardado.</div>';
+}
+function blkAdd(){
+ const f=$('#bk-f').value,d=$('#bk-d').value,h=$('#bk-h').value,m=$('#bk-m').value.trim()||'Bloqueo';
+ if(!f||!d||!h||toMin(h)<=toMin(d))return toast('Revisa fecha y rango horario del bloqueo','bad');
+ CT.blocks.push({id:Date.now(),resId:dispRes,fecha:f,desde:d,hasta:h,motivo:m});dispDraw();
+}
+function blkDel(id){CT.blocks=CT.blocks.filter(k=>k.id!==id);dispDraw()}
+function pgMiDisp(){
+ const r=res(session.resId);
+ return `<h2>Mi disponibilidad</h2><p class="muted">Como Staff puedes configurar solo la disponibilidad de tu propio recurso (UC-08).</p>
+ <div class="card"><h3>${esc(r.nombre)}</h3><p>Días: ${availSummary(r)}</p><p>Calificación asignada por el dueño: ${stars(r.rating)}</p><button class="btn p" onclick="dispForm(${r.id})">Editar disponibilidad y bloqueos</button></div>`;
+}
+
+/* ---------- staff ---------- */
+function pgStaff(){
+ const pros=CT.resources.filter(r=>r.tipo==='profesional');
+ return `<h2>Personal (Staff)</h2><p class="muted">UC-04: invitar por correo y activar/desactivar sin perder el historial de reservas.</p>
+ <div class="card tw"><table><tr><th>Nombre</th><th>Correo</th><th>Recurso asignado</th><th>Estado</th><th></th></tr>
+ ${CT.staff.map(s=>`<tr class="${s.activo?'':'dim'}"><td><b>${esc(s.nombre)}</b></td><td>${esc(s.email)}</td><td>${esc(res(s.resId)?.nombre||'—')}</td><td><span class="badge ${s.activo?'ok':''}">${s.activo?'activo':'desactivado'}</span></td><td><button class="btn s" onclick="staffToggle(${s.id})">${s.activo?'Desactivar':'Activar'}</button></td></tr>`).join('')}</table></div>
+ <div class="card" style="margin-top:14px"><h3>Invitar staff</h3><div class="row"><input id="iv-e" placeholder="correo@ejemplo.cl" style="flex:1;min-width:200px"><select id="iv-r" style="width:auto">${pros.map(r=>`<option value="${r.id}">${esc(r.nombre)}</option>`).join('')}</select><button class="btn p" onclick="invite()">Enviar invitación</button></div><div id="iv-x"></div>
+ ${CT.invites.length?`<h3 style="margin-top:14px">Invitaciones pendientes</h3>${CT.invites.map((i,ix)=>`<div class="row small" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0"><span>${esc(i.email)} → ${esc(res(i.resId)?.nombre||'')}</span><button class="btn s" onclick="acceptInvite(${ix})">Simular registro de la persona invitada</button></div>`).join('')}`:''}</div>`;
+}
+function staffToggle(id){const s=CT.staff.find(x=>x.id===id);s.activo=!s.activo;toast(s.activo?'Cuenta activada':'Cuenta desactivada (historial conservado)','ok');render()}
+function invite(){
+ const e=$('#iv-e').value.trim().toLowerCase();
+ if(!/^\S+@\S+\.\S+$/.test(e))return $('#iv-x').innerHTML='<div class="err">Ingresa un correo válido.</div>';
+ if(e==='super@expertia.cl'||USERS.some(u=>u.rol==='DUENO'&&u.email===e&&u.tenantId!==CT.id))return $('#iv-x').innerHTML='<div class="err">Ese correo ya pertenece a otro tenant como Dueño de Negocio.</div>';
+ if(CT.staff.some(s=>s.email===e)||CT.invites.some(i=>i.email===e))return $('#iv-x').innerHTML='<div class="err">Ya existe una cuenta o invitación con ese correo.</div>';
+ CT.invites.push({email:e,resId:+$('#iv-r').value});
+ pushMail(e,'Invitación a Expertia',`Te invitaron a unirte al equipo de ${CT.negocio.nombre}. Completa tu registro con este enlace.`,'Invitación de staff');
+ toast('Invitación enviada','ok');render();
+}
+function acceptInvite(ix){
+ const i=CT.invites.splice(ix,1)[0];
+ CT.staff.push({id:Math.max(0,...CT.staff.map(s=>s.id))+1,nombre:i.email.split('@')[0],email:i.email,activo:true,resId:i.resId});
+ toast('La persona completó su registro y quedó como Staff','ok');render();
+}
+
+/* ---------- negocio / FAQ / correos ---------- */
+function pgNegocio(){
+ const n=CT.negocio;
+ return `<h2>Mi negocio</h2><p class="muted">UC-05. Los cambios se reflejan de inmediato en la página pública.</p>
+ <div class="card" style="max-width:560px"><label>Nombre</label><input id="ng-n" value="${esc(n.nombre)}"><label>Dirección</label><input id="ng-d" value="${esc(n.direccion)}"><label>Horario general</label><input id="ng-h" value="${esc(n.horario)}"><div id="ng-e"></div>
+ <div class="row" style="margin-top:14px"><button class="btn p" onclick="ngSave()">Guardar cambios</button><a class="btn" target="_blank" href="#/${tenant().slug}">Ver página pública</a></div><p class="muted small">Enlace público: <b>expertia.cl/${tenant().slug}</b></p></div>`;
+}
+function ngSave(){
+ const n=$('#ng-n').value.trim(),d=$('#ng-d').value.trim(),h=$('#ng-h').value.trim();
+ if(!n||!d||!h)return $('#ng-e').innerHTML='<div class="err">Todos los campos son obligatorios.</div>';
+ CT.negocio={nombre:n,direccion:d,horario:h};tenant().nombre=n;toast('Datos del negocio actualizados','ok');render();
+}
+function pgAsistente(){
+ return `<h2>Asistente conversacional</h2><p class="muted">El asistente responde solo con lo que configures aquí (RF-036, RF-037). Si no hay información, lo dice explícitamente. Las calificaciones de profesionales se editan en <a href="#/app/recursos">Recursos</a>.</p>
+ ${CT.faq.map((f,i)=>`<div class="card" style="margin-bottom:10px"><label style="margin-top:0">Pregunta</label><input value="${esc(f.q)}" onchange="CT.faq[${i}].q=this.value;save()"><label>Respuesta</label><textarea rows="2" onchange="CT.faq[${i}].a=this.value;save()">${esc(f.a)}</textarea><div style="margin-top:8px"><button class="btn s d" onclick="CT.faq.splice(${i},1);render()">Quitar</button></div></div>`).join('')}
+ <div class="card"><h3>Agregar pregunta frecuente</h3><label>Pregunta</label><input id="fq-q"><label>Respuesta</label><textarea id="fq-a" rows="2"></textarea><div style="margin-top:10px"><button class="btn p" onclick="faqAdd()">Agregar</button></div></div>
+ <p class="muted small" style="margin-top:12px">Pruébalo: abre la página pública y pregúntale al chat.</p>`;
+}
+function faqAdd(){const q=$('#fq-q').value.trim(),a=$('#fq-a').value.trim();if(!q||!a)return toast('Completa pregunta y respuesta','bad');CT.faq.push({q,a});toast('Pregunta agregada','ok');render()}
+function pgMails(){
+ return `<h2>Notificaciones enviadas</h2><p class="muted">Simulación del módulo Notification (UC-16): confirmaciones, avisos, cancelaciones e invitaciones.</p>
+ <div class="card tw"><table><tr><th>Tipo</th><th>Destinatario</th><th>Asunto</th><th>Contenido</th></tr>${CT.mails.map(m=>`<tr><td><span class="badge br">${m.tipo}</span></td><td class="small">${esc(m.to)}</td><td class="small"><b>${esc(m.asunto)}</b></td><td class="small">${esc(m.cuerpo)}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">Aún no se han enviado correos.</td></tr>'}</table></div>`;
+}
+
+/* ================= super admin ================= */
+function viewSuper(){
+ const act=DB.tenants.filter(t=>t.estado==='activo').length;
+ return `<div class="shell"><aside class="side sa"><div class="brand"><span class="mark">E</span>Expertia · Plataforma</div><nav class="nav"><a class="on" href="#/admin/tenants">🏢 Tenants</a></nav></aside>
+ <div class="main"><div class="top"><div><b>Administración de plataforma</b></div><div class="row"><span class="badge br">${ROLNAME.SUPER}</span><button class="btn s" onclick="logout()">Salir</button></div></div>
+ <div class="content"><h2>Tenants registrados</h2>
+ <div class="okbox" style="background:#eef2ff;color:#3730a3;border-color:#c7d2fe">🔒 Por diseño (RN-010) el Super Admin solo ve metadatos: estado, fecha de alta y plan. No accede a reservas ni clientes de ningún negocio.</div>
+ <div class="grid g4" style="margin-bottom:14px"><div class="card kpi"><div class="muted small">Total</div><div class="n">${DB.tenants.length}</div></div><div class="card kpi"><div class="muted small">Activos</div><div class="n">${act}</div></div><div class="card kpi"><div class="muted small">Inactivos</div><div class="n">${DB.tenants.length-act}</div></div></div>
+ <div class="card tw"><table><tr><th>Negocio</th><th>Rubro</th><th>Alta</th><th>Plan</th><th>Estado</th><th>Datos operativos</th><th></th></tr>
+ ${DB.tenants.map(t=>`<tr class="${t.estado==='activo'?'':'dim'}"><td><b>${esc(t.nombre)}</b><div class="muted small">/${t.slug}</div></td><td>${esc(t.rubro)}</td><td>${t.alta}</td><td><span class="badge">${t.plan}</span></td><td><span class="badge ${t.estado==='activo'?'ok':'bad'}">${t.estado}</span></td><td><button class="btn s" onclick="toast('403: el Super Admin no puede ver datos operativos (RN-010)','bad')">🔒 Ver reservas</button></td><td><button class="btn s ${t.estado==='activo'?'d':''}" onclick="tenantToggle(${t.id})">${t.estado==='activo'?'Desactivar':'Activar'}</button></td></tr>`).join('')}</table></div>
+ <p class="muted small" style="margin-top:10px">Prueba: desactiva “Salón María” y luego abre su página pública o intenta iniciar sesión como su dueño.</p></div></div></div>`;
+}
+function tenantToggle(id){
+ const t=DB.tenants.find(x=>x.id===id);
+ if(!confirm(`¿${t.estado==='activo'?'Desactivar':'Activar'} el tenant “${t.nombre}”?`))return;
+ t.estado=t.estado==='activo'?'inactivo':'activo';toast(`Tenant ${t.estado}`,'ok');render();
+}
+
+/* ================= cliente final: página pública ================= */
+let pub={step:1,tenantId:null,serviceId:null,fecha:null,hora:null,resId:null,nombre:'',email:'',err:'',booking:null};
+function pubReset(){pub={step:1,tenantId:CT?CT.id:null,serviceId:null,fecha:null,hora:null,resId:null,nombre:'',email:'',err:'',booking:null};render()}
+function viewPublic(){
+ if(tenant().estado!=='activo')return `<div class="pub"><div class="card" style="text-align:center;margin-top:40px"><div style="font-size:40px">⏸️</div><h2>Este negocio no está disponible</h2><p class="muted">La cuenta fue desactivada por la plataforma.</p></div></div>`;
+ const n=CT.negocio,st=['Servicio','Horario','Tus datos','Confirmación'];
+ let body='';
+ if(pub.step===1)body=pubStep1();else if(pub.step===2)body=pubStep2();else if(pub.step===3)body=pubStep3();else body=pubStep4();
+ const initials=n.nombre.split(/\s+/).filter(w=>w.length>2).slice(0,2).map(w=>w[0].toUpperCase()).join('')||n.nombre[0].toUpperCase();
+ return `<div class="pub"><div class="pubh"><div class="av">${esc(initials)}</div><h1>${esc(n.nombre)}</h1><p>📍 ${esc(n.direccion)}</p><p>🕒 ${esc(n.horario)}</p></div>
+ <div class="steps">${st.map((s,i)=>`<div class="${pub.step===i+1?'on':pub.step>i+1?'done':''}">${i+1}. ${s}</div>`).join('')}</div>${body}
+ <div class="card" style="margin-top:18px"><b>¿Ya tienes una reserva?</b><div class="row" style="margin-top:8px"><input id="cc" placeholder="Código (ej. EXP-1050)" style="flex:1;min-width:160px"><button class="btn" onclick="go('/${tenant().slug}/cancelar/'+encodeURIComponent($('#cc').value.trim()))">Cancelar mi reserva</button></div></div></div>`;
+}
+function pubStep1(){
+ return `<h2>¿Qué servicio quieres reservar?</h2>${CT.services.filter(s=>s.activo&&s.recursos.some(r=>res(r)?.activo)).map(s=>`<div class="card svc" style="margin-bottom:10px" onclick="pubSvc(${s.id})"><div><h3>${esc(s.nombre)}</h3><span class="muted small">${s.duracion} min${s.grupal?` · Grupal (cupo ${s.cupo})`:''}</span></div><div style="text-align:right"><b>${money(s.precio)}</b><div class="muted small">Elegir →</div></div></div>`).join('')}`;
+}
+function pubDates(s){return[...Array(7)].map((_,i)=>{const f=ymd(addDays(new Date(),i));return{f,n:availability(s,f).length}})}
+function pubSvc(id){pub.serviceId=id;pub.hora=null;pub.resId=null;const d=pubDates(svc(id));pub.fecha=(d.find(x=>x.n>0)||d[0]).f;pub.step=2;pub.err='';render()}
+function pubStep2(){
+ const s=svc(pub.serviceId),ds=pubDates(s),av=availability(s,pub.fecha),sel=av.find(x=>x.hora===pub.hora);
+ return `<a href="javascript:pub.step=1;render()" class="small">← Cambiar servicio</a><h2 style="margin-top:6px">${esc(s.nombre)} · elige fecha y hora</h2>
+ ${pub.err?`<div class="err">${pub.err}</div>`:''}
+ <div class="chips">${ds.map(d=>`<button class="c ${d.f===pub.fecha?'on':''}" ${d.n?'':'disabled'} onclick="pub.fecha='${d.f}';pub.hora=null;pub.resId=null;render()">${d.f===todayS()?'Hoy':fmtDay(d.f)}</button>`).join('')}</div>
+ <h3>Horarios disponibles</h3>
+ ${av.length?`<div class="chips">${av.map(x=>`<button class="c ${x.hora===pub.hora?'on':''}" onclick="pubSlot('${x.hora}')">${x.hora}${s.grupal?` · ${x.opciones[0].cupos} cupos`:''}</button>`).join('')}</div>`:'<p class="muted">No hay horarios disponibles ese día. Prueba con otra fecha.</p>'}
+ ${sel?`<h3 style="margin-top:14px">${res(sel.opciones[0].res.id).tipo==='profesional'?'Profesional':'Recurso'}</h3>${sel.opciones.map((o,i)=>`<div class="opt ${pub.resId===o.res.id?'on':''}" onclick="pub.resId=${o.res.id};render()"><input type="radio" ${pub.resId===o.res.id?'checked':''}><div style="flex:1"><b>${esc(o.res.nombre)}</b> ${i===0&&sel.opciones.length>1&&o.res.rating!=null?'<span class="badge br">Recomendado</span>':''}</div>${o.res.tipo==='profesional'?stars(o.res.rating):''}</div>`).join('')}`:''}
+ <div style="margin-top:14px"><button class="btn p" ${pub.hora&&pub.resId?'':'disabled'} onclick="pub.step=3;pub.err='';render()">Continuar</button></div>`;
+}
+function pubSlot(h){pub.hora=h;const s=svc(pub.serviceId),o=availability(s,pub.fecha).find(x=>x.hora===h).opciones;pub.resId=o[0].res.id;render()}
+function pubStep3(){
+ const s=svc(pub.serviceId),r=res(pub.resId);
+ return `<a href="javascript:pub.step=2;render()" class="small">← Cambiar horario</a><h2 style="margin-top:6px">Tus datos</h2>
+ <div class="card" style="margin-bottom:12px;background:#f0fdfa"><b>${esc(s.nombre)}</b> · ${money(s.precio)}<br><span class="muted small">${fmtDayL(pub.fecha)} a las ${pub.hora} con ${esc(r.nombre)} (${s.duracion} min)</span></div>
+ ${pub.err?`<div class="err">${pub.err} <a href="javascript:pub.step=2;pub.hora=null;pub.resId=null;pub.err='';render()">Ver horarios actualizados</a></div>`:''}
+ <label>Nombre completo</label><input id="pb-n" value="${esc(pub.nombre)}"><label>Correo electrónico</label><input id="pb-e" type="email" value="${esc(pub.email)}">
+ <p class="muted small">Te enviaremos la confirmación y un enlace único para cancelar. El pago se realiza en el local.</p>
+ <button class="btn p" onclick="pubConfirm()">Confirmar reserva</button>`;
+}
+function pubConfirm(){
+ const n=$('#pb-n').value.trim(),e=$('#pb-e').value.trim();pub.nombre=n;pub.email=e;
+ if(n.length<2||!/^\S+@\S+\.\S+$/.test(e)){pub.err='Ingresa tu nombre y un correo válido.';return render()}
+ const r=createBooking({serviceId:pub.serviceId,resId:pub.resId,fecha:pub.fecha,hora:pub.hora,cliente:n,email:e,canal:'web'});
+ if(!r.ok){pub.err=r.error;return render()}
+ pub.booking=r.booking;pub.step=4;pub.err='';render();
+}
+function pubStep4(){
+ const b=pub.booking,s=svc(b.serviceId);
+ return `<div class="card" style="text-align:center"><div style="font-size:44px">✅</div><h2>¡Reserva confirmada!</h2><p>Tu código es</p><div style="font-size:28px;font-weight:800;color:var(--brand2)">${esc(b.code)}</div>
+ <p class="muted">${esc(s.nombre)} · ${fmtDayL(b.fecha)} a las ${b.hora} con ${esc(res(b.resId).nombre)}</p></div>
+ <h3 style="margin-top:16px">Correo enviado (simulado)</h3><div class="mail"><b>Para:</b> ${esc(b.email)}<br><b>Asunto:</b> Reserva confirmada ${esc(b.code)}<br><br>Hola ${esc(b.cliente)}, tu reserva quedó confirmada. Si necesitas cancelarla usa este enlace único:<br><a href="#/${tenant().slug}/cancelar/${b.code}">expertia.cl/${tenant().slug}/cancelar/${esc(b.code)}</a></div>
+ <div class="row" style="margin-top:14px"><button class="btn p" onclick="pubReset()">Hacer otra reserva</button></div>`;
+}
+function viewCancel(code){
+ code=decodeURIComponent(code||'');
+ const b=CT.bookings.find(x=>x.code.toLowerCase()===code.toLowerCase());
+ let body;
+ if(!b)body=`<h2>No pudimos completar la operación</h2><p class="muted">El enlace no corresponde a una reserva existente.</p>`;
+ else if(b.estado!=='confirmada')body=`<h2>Esta reserva ya no se puede cancelar</h2><p class="muted">El enlace ya fue usado o la reserva no está vigente.</p>`;
+ else body=`<h2>Cancelar mi reserva</h2><div class="card" style="background:#f8fafc"><b>${esc(svc(b.serviceId).nombre)}</b><br>${fmtDayL(b.fecha)} a las ${b.hora} con ${esc(res(b.resId).nombre)}<br><span class="muted small">Código ${esc(b.code)}</span></div><p>¿Confirmas que quieres cancelarla?</p><button class="btn d" onclick="cliCancel(${b.id})">Sí, cancelar mi reserva</button>`;
+ return `<div class="pub"><div class="pubh"><h1>${esc(CT.negocio.nombre)}</h1></div><div class="card">${body}</div><div class="row" style="margin-top:14px"><a class="btn" href="#/${tenant().slug}">← Volver a la página del negocio</a></div></div>`;
+}
+function cliCancel(id){cancelBooking(id,'el cliente');toast('Reserva cancelada. El horario quedó liberado.','ok');render()}
+
+/* ================= asistente de chat (basado en reglas, MVP) ================= */
+const chat={open:false,msgs:[],ctx:{},step:null,init:false,typing:false,tenantId:null};
+function chatVisibility(v){$('#chat').style.display=v?'block':'none'}
+function chatSay(t,chips){chat.msgs.push({from:'bot',text:t,chips:chips||[]})}
+function svcChips(){return CT.services.filter(s=>s.activo).map(s=>({l:`${s.nombre} · ${money(s.precio)}`,a:'svc:'+s.id}))}
+function dayChips(){return[...Array(6)].map((_,i)=>{const f=ymd(addDays(new Date(),i));return{l:i===0?'Hoy':i===1?'Mañana':fmtDay(f),a:'day:'+f}})}
+function findService(t){
+ return CT.services.filter(s=>s.activo).find(s=>norm(s.nombre).split(/\s+/).filter(w=>w.length>4).some(w=>t.includes(w.slice(0,5))))||null;
+}
+function findDay(t){
+ const morn=/(en la|por la|de la|a la) manana/.test(t);
+ if(/\bhoy\b/.test(t))return todayS();
+ if(/pasado manana/.test(t))return ymd(addDays(new Date(),2));
+ if(!morn&&/\bmanana\b/.test(t))return ymd(addDays(new Date(),1));
+ const names=['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+ const i=names.findIndex(n=>t.includes(n));
+ if(i>=0){for(let k=1;k<=7;k++){const d=addDays(new Date(),k);if(d.getDay()===i)return ymd(d)}}
+ return null;
+}
+function findFranja(t){if(/(en la|por la|de la|a la) manana/.test(t))return'manana';if(/tarde/.test(t))return'tarde';return null}
+function firstName(n){return n.trim().split(/\s+/)[0]}
+function chatAdvance(){
+ const c=chat.ctx;
+ if(!c.serviceId){chat.step='service';return chatSay('Claro, te ayudo a reservar. ¿Para qué servicio?',svcChips())}
+ if(!c.fecha){chat.step='day';return chatSay('¿Para qué día quieres la hora?',dayChips())}
+ const s=svc(c.serviceId);let av=availability(s,c.fecha);
+ if(c.franja==='tarde')av=av.filter(x=>toMin(x.hora)>=720);
+ if(c.franja==='manana')av=av.filter(x=>toMin(x.hora)<720);
+ if(!av.length){c.fecha=null;c.franja=null;chat.step='day';return chatSay(`No encontré horarios de ${s.nombre} para ese día. ¿Probamos con otro día u otro rango?`,dayChips())}
+ chat.step='slot';
+ const shown=av.slice(0,8),ids=new Set(av.flatMap(x=>x.opciones.map(o=>o.res.id)));
+ let rec='';
+ if(ids.size>1){
+  const rated=av.flatMap(x=>x.opciones).filter(o=>o.res.rating!=null).sort((a,b)=>b.res.rating-a.res.rating);
+  rec=rated.length?`\n\nTe recomiendo a ${rated[0].res.nombre} (★ ${rated[0].res.rating.toFixed(1)}), la mejor calificada con disponibilidad.`:'\n\nNo hay calificaciones para diferenciar entre profesionales, así que te muestro las opciones sin ordenar.';
+ }
+ chatSay(`Estos son los horarios de ${s.nombre} para ${fmtDayL(c.fecha)}:${rec}\n\nElige uno:`,shown.map(x=>({l:`${x.hora}${s.grupal?` · ${x.opciones[0].cupos} cupos`:` · ${firstName(x.opciones[0].res.nombre)}`}`,a:'slot:'+x.hora})));
+}
+function chatAction(a){
+ const c=chat.ctx;
+ if(DB.llmDown&&a!=='web')return chatDown();
+ if(a.startsWith('svc:')){c.serviceId=+a.slice(4);return chatAdvance()}
+ if(a.startsWith('day:')){c.fecha=a.slice(4);return chatAdvance()}
+ if(a.startsWith('slot:')){
+  const h=a.slice(5),s=svc(c.serviceId),slot=availability(s,c.fecha).find(x=>x.hora===h);
+  if(!slot){chatSay('Ese horario ya no está disponible. Veamos de nuevo.');return chatAdvance()}
+  c.hora=h;
+  if(slot.opciones.length>1){
+   chat.step='res';const b=slot.opciones[0];
+   return chatSay(`Para las ${h} hay ${slot.opciones.length} opciones.${b.res.rating!=null?` Te recomiendo primero a ${b.res.nombre} (★ ${b.res.rating.toFixed(1)}).`:''} ¿Con quién reservo?`,slot.opciones.map((o,i)=>({l:`${o.res.nombre}${o.res.rating!=null?` ★${o.res.rating.toFixed(1)}`:''}${i===0&&o.res.rating!=null?' (recomendada)':''}`,a:'res:'+o.res.id})));
+  }
+  c.resId=slot.opciones[0].res.id;chat.step='name';
+  return chatSay(`Perfecto, ${s.nombre} a las ${h} con ${slot.opciones[0].res.nombre}. ¿A nombre de quién dejo la reserva?`);
+ }
+ if(a.startsWith('res:')){c.resId=+a.slice(4);chat.step='name';return chatSay(`Genial, con ${res(c.resId).nombre}. ¿A nombre de quién dejo la reserva?`)}
+ if(a==='confirm'){
+  const r=createBooking({serviceId:c.serviceId,resId:c.resId,fecha:c.fecha,hora:c.hora,cliente:c.nombre,email:c.email,canal:'chat'});
+  if(!r.ok){chat.step=null;const keep=c.serviceId;chat.ctx={serviceId:keep};chatSay(`No pude completar la reserva: ${r.error}`,[{l:'Ver horarios de nuevo',a:'again'}]);return}
+  chat.step=null;chat.ctx={};
+  return chatSay(`¡Listo, ${firstName(r.booking.cliente)}! Tu reserva quedó confirmada.\n\nCódigo: ${r.booking.code}\n${svc(r.booking.serviceId).nombre} · ${fmtDayL(r.booking.fecha)} a las ${r.booking.hora} con ${res(r.booking.resId).nombre}\n\nTe envié el correo de confirmación con el enlace para cancelar.`,[{l:'Hacer otra consulta',a:'start'}]);
+ }
+ if(a==='again')return chatAdvance();
+ if(a==='abort'){chat.step=null;chat.ctx={};return chatSay('Listo, cancelé el proceso. ¿En qué más te ayudo?',startChips())}
+ if(a==='start'){chat.step=null;chat.ctx={};return chatSay('¿En qué te puedo ayudar?',startChips())}
+ if(a==='book'){chat.ctx={};return chatAdvance()}
+ if(a==='prices')return chatPrices();
+ if(a.startsWith('faq:')){const f=CT.faq[+a.slice(4)];return chatSay(f?f.a:'No dispongo de esa información.',startChips())}
+ if(a==='web'){chat.open=false;pubReset();return}
+}
+function startChips(){return[{l:'Reservar una hora',a:'book'},{l:'Servicios y precios',a:'prices'},...CT.faq.slice(0,2).map((f,i)=>({l:f.q.replace(/[¿?]/g,''),a:'faq:'+i}))]}
+function chatPrices(){chatSay('Estos son nuestros servicios:\n'+CT.services.filter(s=>s.activo).map(s=>`• ${s.nombre}: ${money(s.precio)} (${s.duracion} min${s.grupal?`, grupal, cupo ${s.cupo}`:''})`).join('\n'),[{l:'Reservar una hora',a:'book'}])}
+function chatDown(){chat.step=null;chatSay('En este momento no puedo procesar tu consulta por el chat. Puedes reservar desde el flujo web tradicional, que sigue funcionando con normalidad.',[{l:'Ir a reservar en la web',a:'web'}])}
+function stem(w){return w.slice(0,7)}
+function faqMatch(t){
+ const syn=t.replace(/atienden|abren|cierran|abierto|atencion/g,'horario').replace(/ubicacion|direccion|quedan|llegar|estan|comuna/g,'ubicados donde').replace(/tarjeta|efectivo|transferencia|pagar|pago|cuotas/g,'pagos medios').replace(/anular|cancelar|cambiar|devolucion/g,'cancelacion politica');
+ const stop=['cuales','cual','como','tienen','puedo','quiero','favor','sobre','tiene','hacen','para','ustedes','correo','gracias'];
+ const toks=[...new Set(syn.split(/\W+/).filter(w=>w.length>=6&&!stop.includes(w)).map(stem))];
+ let best=-1,sc=0;
+ CT.faq.forEach((f,i)=>{const q=[...new Set(norm(f.q).split(/\W+/).filter(w=>w.length>=6&&!stop.includes(w)).map(stem))];const n=toks.filter(x=>q.includes(x)).length;if(n>sc){sc=n;best=i}});
+ return sc>=1?best:-1;
+}
+function botHandle(text){
+ if(DB.llmDown)return chatDown();
+ const c=chat.ctx,t=norm(text);
+ if(chat.step==='name'){
+  if(text.trim().length<2)return chatSay('Necesito un nombre para la reserva. ¿A nombre de quién la dejo?');
+  c.nombre=text.trim();chat.step='email';return chatSay(`Gracias, ${firstName(c.nombre)}. ¿Cuál es tu correo para enviarte la confirmación?`);
+ }
+ if(chat.step==='email'){
+  if(!/^\S+@\S+\.\S+$/.test(text.trim()))return chatSay('Ese correo no parece válido. ¿Puedes revisarlo?');
+  c.email=text.trim();chat.step='confirm';const s=svc(c.serviceId);
+  return chatSay(`Confirmemos tu reserva:\n\n• ${s.nombre} (${money(s.precio)})\n• ${fmtDayL(c.fecha)} a las ${c.hora}\n• Con ${res(c.resId).nombre}\n• A nombre de ${c.nombre} (${c.email})\n\n¿Confirmo?`,[{l:'Sí, confirmar',a:'confirm'},{l:'No, cancelar',a:'abort'}]);
+ }
+ if(chat.step==='slot'){const m=t.match(/\b(\d{1,2}):(\d{2})\b/);if(m){const h=`${pad(+m[1])}:${m[2]}`;if(availability(svc(c.serviceId),c.fecha).find(x=>x.hora===h))return chatAction('slot:'+h)}}
+ if(/^(hola|buenas|buen dia|buenos dias|buenas tardes|hey|ola)\b/.test(t))return chatSay(`¡Hola! Soy el asistente de ${CT.negocio.nombre}. Puedo mostrarte horarios, recomendarte profesional, reservar por aquí y resolver dudas.`,startChips());
+ if(/gracias|chao|adios|hasta luego/.test(t))return chatSay('¡De nada! Que tengas un excelente día.');
+ const s=findService(t),d=findDay(t),fr=findFranja(t);
+ if(s){c.serviceId=s.id}if(d){c.fecha=d}if(fr){c.franja=fr}
+ if(/(cuesta|precio|valor|cuanto|tarifa)/.test(t)&&!s)return chatPrices();
+ if(/(cuesta|precio|valor|cuanto|tarifa)/.test(t)&&s)return chatSay(`${s.nombre} cuesta ${money(s.precio)} y dura ${s.duracion} minutos.`,[{l:'Reservar una hora',a:'book'}]);
+ if(s||d||/(reserv|agend|disponib|\bcitas?\b|\bturno|\bhoras?\b|quiero (un|una)|necesito (un|una))/.test(t))return chatAdvance();
+ const f=faqMatch(t);
+ if(f>=0)return chatSay(CT.faq[f].a,[{l:'Reservar una hora',a:'book'}]);
+ chatSay('No tengo esa información configurada por el negocio y prefiero no inventarla. Puedo ayudarte con horarios, reservas, precios o alguna de estas preguntas frecuentes:',startChips());
+}
+function chatSend(text){
+ text=(text||'').trim();if(!text)return;
+ chat.msgs.push({from:'me',text});chat.typing=true;chatRender();
+ setTimeout(()=>{chat.typing=false;botHandle(text);chatRender()},450);
+}
+function chatChip(mi,ci){
+ const c=chat.msgs[mi].chips[ci];chat.msgs.push({from:'me',text:c.l});chat.typing=true;chatRender();
+ setTimeout(()=>{chat.typing=false;chatAction(c.a);chatRender()},400);
+}
+function chatToggle(){
+ chat.open=!chat.open;
+ if(chat.open&&!chat.init){chat.init=true;chatSay(`¡Hola! 👋 Soy el asistente virtual de ${CT.negocio.nombre}. Puedo mostrarte horarios, recomendarte al profesional mejor calificado, reservar por aquí y responder tus dudas.`,startChips())}
+ chatRender();
+}
+function chatRender(){
+ save();
+ const last=chat.msgs.map((m,i)=>m.from==='bot'?i:-1).filter(i=>i>=0).pop();
+ const ended=chat.msgs.length&&chat.msgs[chat.msgs.length-1].from==='bot';
+ const lm=chat.msgs[last];
+ $('#chat').innerHTML=`<button class="fab" onclick="chatToggle()" title="Asistente virtual">${chat.open?'✕':'💬'}</button>
+ <div class="panel ${chat.open?'on':''}"><div class="ch"><div><b>Asistente de ${esc(CT.negocio.nombre)}</b><small>${DB.llmDown?'⚠️ Proveedor LLM no disponible':'En línea · basado en reglas (MVP)'}</small></div></div>
+ <div class="cm" id="cm">${chat.msgs.map(m=>`<div class="m ${m.from}">${esc(m.text)}</div>`).join('')}${chat.typing?'<div class="m bot dots"><span></span><span></span><span></span></div>':''}</div>
+ <div class="cc">${ended&&!chat.typing&&lm?lm.chips.map((c,j)=>`<button class="c" onclick="chatChip(${last},${j})">${esc(c.l)}</button>`).join(''):''}</div>
+ <div class="ci"><input id="ci" placeholder="Escribe tu mensaje…" onkeydown="if(event.key==='Enter'){chatSend(this.value);}"><button class="btn p" onclick="chatSend($('#ci').value)">Enviar</button></div></div>`;
+ const cm=$('#cm');if(cm)cm.scrollTop=cm.scrollHeight;
+ const ci=$('#ci');if(ci&&chat.open&&!chat.typing)ci.focus();
+}
+
+/* ================= arranque ================= */
+load();
+if(!location.hash)location.hash='#/';
+render();chatRender();
+</script>
+</body>
+</html>
